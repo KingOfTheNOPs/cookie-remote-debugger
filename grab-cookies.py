@@ -39,7 +39,7 @@ def main():
             same_site = "lax"
         cookie = {
             "domain": c["domain"],
-            "expirationDate": c["expires"],
+            "expires": c["expires"],
             "hostOnly": not c["domain"].startswith("."),
             "httpOnly": c["httpOnly"],
             "name": c["name"],
@@ -47,15 +47,20 @@ def main():
             "sameSite": same_site,
             "secure": c["secure"],
             "session": c["session"],
-            "storeId": c.get("storeId", "None"),
+            "sourcePort": c["sourcePort"],
             "value": c["value"]
         }
         
         final.append(cookie)
+    output = {
+            "url": "about:blank",
+            "cookies": final,
+            "local_storage": []
+        }
 
-    cookie_file_name = "cookie_" +datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
+    cookie_file_name = "cuddlephish_" +datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
     with open(cookie_file_name, 'w') as f:
-        json.dump(final, f, indent=4, sort_keys=True)
+        json.dump(output, f, indent=4, sort_keys=True)
     print("Cookies saved to " + cookie_file_name)
     
 if __name__ == "__main__":
